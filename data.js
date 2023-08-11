@@ -1,7 +1,7 @@
-
-export const BOOKS_PER_PAGE = 36;
+ export const BOOKS_PER_PAGE = 36
 
 export const authors = {
+  
   "194e164b-9365-4358-b44a-f28a93cc528f": "Steven D. Levitt",
   "76e8065c-fd7a-4a8b-a8ea-6105a47d0781": "Stephen J. Dubner",
   "6b092ae7-283c-45db-80f1-f0cc7e0d4921": "Bill Bryson",
@@ -25411,3 +25411,4 @@ export const books = [
     "author": "8e7083f4-7613-4872-a21b-62fbe33fe180"
   }
 ]
+

@@ -42,11 +42,12 @@ option {
 
 /* header */
 
-.header {
+.header{
   background-color: rgba(var(--color-force-dark), 0.9);
   position: sticky;
   top: 0;
   left: 0;
+  
 }
 
 .header__inner {
@@ -76,7 +77,7 @@ option {
 @media (min-width: 30rem) {
   .header__shape {
     display: block;
-  }
+  ;}
 }
 
 .header__text {
