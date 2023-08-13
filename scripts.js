@@ -1,3 +1,5 @@
+import { books, authors, genres, BOOKS_PER_PAGE } from './data.js'
+
 const bookList = {
     books,
     authors,
@@ -27,6 +29,50 @@ const bookList = {
         document.querySelector('[data-list-items]').appendChild(starting);
     },
 
+    createGenreOptions() {
+        const genreHtml = document.createDocumentFragment();
+        const firstGenreElement = document.createElement('option');
+        firstGenreElement.value = 'any';
+        firstGenreElement.innerText = 'All Genres';
+        genreHtml.appendChild(firstGenreElement);
+
+        for (const [id, name] of Object.entries(this.genres)) {
+            const element = document.createElement('option');
+            element.value = id;
+            element.innerText = name;
+            genreHtml.appendChild(element);
+        }
+        document.querySelector('[data-search-genres]').appendChild(genreHtml);
+    },
+
+    createAuthorOptions() {
+        const authorsHtml = document.createDocumentFragment();
+        const firstAuthorElement = document.createElement('option');
+        firstAuthorElement.value = 'any';
+        firstAuthorElement.innerText = 'All Authors';
+        authorsHtml.appendChild(firstAuthorElement);
+
+        for (const [id, name] of Object.entries(this.authors)) {
+            const element = document.createElement('option');
+            element.value = id;
+            element.innerText = name;
+            authorsHtml.appendChild(element);
+        }
+        document.querySelector('[data-search-authors]').appendChild(authorsHtml);
+    },
+
+    setTheme() {
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.querySelector('[data-settings-theme]').value = 'night';
+            document.documentElement.style.setProperty('--color-dark', '255, 255, 255');
+            document.documentElement.style.setProperty('--color-light', '10, 10, 20');
+        } else {
+            document.querySelector('[data-settings-theme]').value = 'day';
+            document.documentElement.style.setProperty('--color-dark', '10, 10, 20');
+            document.documentElement.style.setProperty('--color-light', '255, 255, 255');
+        }
+    },
+
     updateListButton() {
         document.querySelector('[data-list-button]').innerText = `Show more (${this.books.length - this.BOOKS_PER_PAGE})`;
         document.querySelector('[data-list-button]').disabled = (this.matches.length - (this.page * this.BOOKS_PER_PAGE)) > 0;
@@ -39,6 +85,9 @@ const bookList = {
 };
 
 bookList.createStartingElements();
+bookList.createGenreOptions();
+bookList.createAuthorOptions();
+bookList.setTheme();
 bookList.updateListButton();
 
 document.querySelector('[data-search-cancel]').addEventListener('click', () => {
