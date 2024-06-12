@@ -27,6 +27,7 @@ const elements = {
 // Create an array of book-preview elements for the first page
 const startingPreviews = matches.slice(0, BOOKS_PER_PAGE).map(({ author, id, image, title }) => {
     const preview = document.createElement('book-preview');
+    console.log(preview, 'hello world')
     preview.setAttribute('data-id', id);
     preview.setAttribute('data-image', image);
     preview.setAttribute('data-title', title);
